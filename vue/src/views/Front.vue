@@ -10,8 +10,8 @@
         <el-menu :default-active="router.currentRoute.value.path" router mode="horizontal">
           <el-menu-item v-if="data.user && data.user.role === 'USER'" index="/front/home">首页</el-menu-item>
           <el-menu-item v-if="data.user && data.user.role === 'USER'" index="/front/collect">我的收藏</el-menu-item>
-          <el-menu-item v-if="data.user && data.user.role === 'USER'" index="/front/resume">我的简历</el-menu-item>
-          <el-menu-item v-if="data.user && data.user.role === 'USER'" index="/front/submit">我的投递</el-menu-item>
+<!--          <el-menu-item v-if="data.user && data.user.role === 'USER'" index="/front/resume">我的简历</el-menu-item>-->
+<!--          <el-menu-item v-if="data.user && data.user.role === 'USER'" index="/front/submit">我的投递</el-menu-item>-->
           <el-menu-item v-if="data.user && data.user.role === 'USER'" index="/front/person">个人中心</el-menu-item>
         </el-menu>
       </div>
@@ -37,17 +37,6 @@
     </div>
     <div class="main-body">
       <RouterView @updateUser="updateUser" />
-    </div>
-    <div class="front-footer">
-      <div style="width: 70%; margin: 0 auto; line-height: 50px; height: 50px; font-size: 14px; color: #93999F; text-align: center">
-        <span style="color: #666666">友情链接：</span>
-        <span style="margin-left: 10px"><a style="margin-left: 10px; color: #93999F" href="https://www.baidu.com/" target="_blank">百度一下</a></span>
-        <span style="margin-left: 10px"><a style="margin-left: 10px; color: #93999F" href="https://www.google.com" target="_blank">谷歌一下</a></span>
-        <span style="margin-left: 10px"><a style="margin-left: 10px; color: #93999F" href="https://www.baidu.com" target="_blank">我的博客</a></span>
-      </div>
-      <div style="text-align: center; line-height: 30px; font-size: 13px; margin-bottom: 10px; color: #93999F">
-        Copyright ©2024 www.baidu.cn 版权所有   <a style="margin-left: 10px; color: #93999F" href="https://beian.miit.gov.cn/" target="_blank">皖ICP备 2023033553号-1</a>
-      </div>
     </div>
   </div>
 </template>
