@@ -26,7 +26,7 @@
         </div>
         <div style="margin-top: 20px">
           <el-button :disabled="!data.user || data.user.role !== 'USER'" type="success" style="padding: 20px 30px" @click="collect">收藏岗位</el-button>
-          <el-button :disabled="!data.user || data.user.role !== 'USER'" type="info" style="padding: 20px 30px" @click="submitInit">投递简历</el-button>
+<!--          <el-button :disabled="!data.user || data.user.role !== 'USER'" type="info" style="padding: 20px 30px" @click="submitInit">投递简历</el-button>-->
         </div>
       </div>
     </div>
@@ -61,44 +61,44 @@
             <el-button @click="navTo('/front/employ?id=' + data.positionData.employId)" type="success" style="padding: 20px 30px">查看全部职位</el-button>
           </div>
         </div>
-        <div style="margin-top: 20px; text-align: center; background-color: #d1d7d7; color: #222222; font-size: 16px; line-height: 40px; font-weight: bold; border-top-left-radius: 10px; border-top-right-radius: 10px">你可能对这些职位感兴趣</div>
-        <div class="card" style="margin-bottom: 5px; cursor: pointer" v-for="it in data.recommendData" @click="navTo('/front/positionDetail?id=' + it.id)">
-          <div style="display: flex; padding: 0 5px">
-            <div style="flex: 1; text-align: left; font-size: 16px">{{ it.name }}</div>
-            <div style="width: 100px; text-align: right; color: red">{{ it.salary }}</div>
-          </div>
-          <div style="margin: 10px 0; padding: 0 5px; text-align: left">
-            <el-tag style="margin-right: 5px" type="info" v-for="tag in it.tagList">{{ tag }}</el-tag>
-          </div>
-          <div style="display: flex; align-items: center; padding: 10px 5px">
-            <div style="width: 35px"><img :src="it.employAvatar" alt="" style="width: 35px; height: 35px; border-radius: 5px; border: 1px solid #cccccc"></div>
-            <div style="flex: 1; margin-left: 20px">{{ it.employName }}</div>
-            <div style="width: 80px; text-align: right">{{ it.employStage }}</div>
-          </div>
-        </div>
+<!--        <div style="margin-top: 20px; text-align: center; background-color: #d1d7d7; color: #222222; font-size: 16px; line-height: 40px; font-weight: bold; border-top-left-radius: 10px; border-top-right-radius: 10px">你可能对这些职位感兴趣</div>-->
+<!--        <div class="card" style="margin-bottom: 5px; cursor: pointer" v-for="it in data.recommendData" @click="navTo('/front/positionDetail?id=' + it.id)">-->
+<!--          <div style="display: flex; padding: 0 5px">-->
+<!--            <div style="flex: 1; text-align: left; font-size: 16px">{{ it.name }}</div>-->
+<!--            <div style="width: 100px; text-align: right; color: red">{{ it.salary }}</div>-->
+<!--          </div>-->
+<!--          <div style="margin: 10px 0; padding: 0 5px; text-align: left">-->
+<!--            <el-tag style="margin-right: 5px" type="info" v-for="tag in it.tagList">{{ tag }}</el-tag>-->
+<!--          </div>-->
+<!--          <div style="display: flex; align-items: center; padding: 10px 5px">-->
+<!--            <div style="width: 35px"><img :src="it.employAvatar" alt="" style="width: 35px; height: 35px; border-radius: 5px; border: 1px solid #cccccc"></div>-->
+<!--            <div style="flex: 1; margin-left: 20px">{{ it.employName }}</div>-->
+<!--            <div style="width: 80px; text-align: right">{{ it.employStage }}</div>-->
+<!--          </div>-->
+<!--        </div>-->
       </div>
     </div>
 
-    <el-dialog title="选择简历" v-model="data.formVisible" width="40%" destroy-on-close>
-      <el-form ref="form" :model="data.form" label-width="70px" style="padding: 20px">
-        <el-form-item prop="resumeId" label="选择简历">
-          <el-select v-model="data.resumeId" placeholder="请选择您的简历">
-            <el-option
-                v-for="item in data.resumeData"
-                :key="item.id"
-                :label="item.name"
-                :value="item.id">
-            </el-option>
-          </el-select>
-        </el-form-item>
-      </el-form>
-      <template #footer>
-        <span class="dialog-footer">
-          <el-button @click="data.formVisible = false">取 消</el-button>
-          <el-button type="primary" @click="submit">投 递</el-button>
-        </span>
-      </template>
-    </el-dialog>
+<!--    <el-dialog title="选择简历" v-model="data.formVisible" width="40%" destroy-on-close>-->
+<!--      <el-form ref="form" :model="data.form" label-width="70px" style="padding: 20px">-->
+<!--        <el-form-item prop="resumeId" label="选择简历">-->
+<!--          <el-select v-model="data.resumeId" placeholder="请选择您的简历">-->
+<!--            <el-option-->
+<!--                v-for="item in data.resumeData"-->
+<!--                :key="item.id"-->
+<!--                :label="item.name"-->
+<!--                :value="item.id">-->
+<!--            </el-option>-->
+<!--          </el-select>-->
+<!--        </el-form-item>-->
+<!--      </el-form>-->
+<!--      <template #footer>-->
+<!--        <span class="dialog-footer">-->
+<!--          <el-button @click="data.formVisible = false">取 消</el-button>-->
+<!--          <el-button type="primary" @click="submit">投 递</el-button>-->
+<!--        </span>-->
+<!--      </template>-->
+<!--    </el-dialog>-->
   </div>
 </template>
 
@@ -123,24 +123,26 @@ const loadPosition = () => {
   request.get('/position/selectById/' + data.positionId).then(res => {
     if (res.code === '200') {
       data.positionData = res.data
-    } else {
+    }
+    else {
       ElMessage.error(res.msg)
     }
   })
 }
-const loadRecommend = () => {
-  request.get('/position/recommend').then(res => {
-    if (res.code === '200') {
-      data.recommendData = res.data
-    } else {
-      ElMessage.error(res.msg)
-    }
-  })
-}
+// const loadRecommend = () => {
+//   request.get('/position/recommend').then(res => {
+//     if (res.code === '200') {
+//       data.recommendData = res.data
+//     }
+//     else {
+//       ElMessage.error(res.msg)
+//     }
+//   })
+// }
 
 onMounted(() => {
   loadPosition()
-  loadRecommend()
+  // loadRecommend()
 })
 
 const collect = () => {
@@ -154,7 +156,8 @@ const collect = () => {
   }).then(res => {
     if (res.code === '200') {
       ElMessage.success('岗位收藏成功')
-    } else {
+    }
+    else {
       ElMessage.error(res.msg)
     }
   })
